@@ -1,81 +1,27 @@
 <?php
-//namespace ProjetoPalin;
+require 'vendor/autoload.php';
+use ProjetoPalin\Palin;
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Palin</title>
+</head>
+<body>
+<form action="" method="post" name="form_palin">
+	<label for="numero">Informe o número</label><br/>
+	<input type="text" name="numero" id="numero"/>
+	<input type="submit" value="Enviar">
+</form>
 
-/*use ProjetoPalin\Palin;
+<?php if(isset($_POST['numero'])): ?>
+<div class="resultado">
+	<?php $palin = new Palin(); ?>
+	<h3>O próximo Palíndromo é:</h3>
+	<h4><?php echo $palin->getProximoPalin($_POST['numero']); ?></h4>
+</div>
+<?php endif; ?>
 
-$palin = new Palin();
-
-$palin->divideNumero(1234);*/
-/**
-* 
-*/
-class Palin
-{
-	
-	public $testsCase;
-
-	function __construct()
-	{
-		$this->testsCase = 0;
-	}
-
-	function divideNumero($valor)
-	{
-		$numComprimento = strlen((string)$valor);
-		$metadeNum = floor($numComprimento/2);
-		$increment = (strlen($valor)%2 != 0) ? 1 : 0;
-
-		return array(
-				substr((string)$valor, 0, $metadeNum),
-				substr((string)$valor, $metadeNum,1),
-				substr((string)$valor, $metadeNum+$increment)
-				);
-	}
-
-	function calcularPalin($num)
-	{
-		$this->testsCase++;
-
-		if($num <= 9){
-			return floor($num) + 1;
-		}
-		$num++;
-
-		$impar = (strlen($num)%2 != 0);
-		$numDividido = $this->divideNumero($num);
-		$parteEsq = $numDividido[0];
-		$meio = ($impar) ? $numDividido[1] : "";
-		$parteDir = $numDividido[2];
-
-		if($parteEsq != strrev($parteDir)){
-			if($parteEsq > $parteDir){
-				$proxPalin = $parteEsq.$meio.strrev($parteEsq);
-			}else{
-				if($impar){
-					$novaEsq = (int)$parteEsq.$meio + 1;
-					$proxPalin = $novaEsq . strrev($parteEsq);
-				}else{
-					$novaEsq = (int)$parteEsq.$meio + 1;
-					$proxPalin = $novaEsq . strrev($novaEsq);
-				}
-			}
-
-			return $proxPalin;		
-		}else{
-			if($impar){
-				$novaEsq = (int)$parteEsq.$meio + 1;
-				$proxPalin = $novaEsq . strrev($parteEsq);
-			}else{
-				$novaEsq = (int)$parteEsq.$meio + 1;
-				$proxPalin = $novaEsq . strrev($novaEsq);
-			}
-			return $proxPalin;
-		}
-	}
-}
-
-$palin = new Palin();
-
-echo $palin->calcularPalin(100) . " = 100<br>";
-echo $palin->calcularPalin(808) . " = 808<br>";
-echo $palin->calcularPalin(999) . " = 999<br>";
+</body>
+</html>

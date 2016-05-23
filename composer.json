@@ -3,8 +3,8 @@
 		"phpunit/phpunit" : "*"
 	},
 	"autoload":{
-		"psr-0" :{
-			"ProjetoPalin" : "class"
+		"psr-4" :{
+			"ProjetoPalin\\" : "src"
 		}
 	}
 }
