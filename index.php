@@ -6,33 +6,76 @@
 $palin = new Palin();
 
 $palin->divideNumero(1234);*/
-
-function divideNumero($num)
+/**
+* 
+*/
+class Palin
 {
-	$num_length = strlen((string)$num);
-	$metadeNum = ceil($num_length/2);
 	
-	return array(
-			substr((string)$num, 0, $metadeNum),
-			substr((string)$num, $metadeNum)
-			);
-}
+	public $testsCase;
 
-function palin($num)
-{
-	if($num <= 9){
-		return floor($num) + 1;
+	function __construct()
+	{
+		$this->testsCase = 0;
 	}
 
-	$numDividido = divideNumero($num);
+	function divideNumero($valor)
+	{
+		$numComprimento = strlen((string)$valor);
+		$metadeNum = floor($numComprimento/2);
+		$increment = (strlen($valor)%2 != 0) ? 1 : 0;
 
-	if($numDividido[0] > $numDividido[1] && strlen($numDividido[0]) == $numDividido[1] && strrev($numDividido[0]) >= $numDividido[1]){
-		$proxPalin = $numDividido[0] . strrev($numDividido[0]);
-	}else{
-		(int)$numDividido[0]++;
-		$proxPalin = $numDividido[0] . strrev($numDividido[0]);
+		return array(
+				substr((string)$valor, 0, $metadeNum),
+				substr((string)$valor, $metadeNum,1),
+				substr((string)$valor, $metadeNum+$increment)
+				);
 	}
-	return $proxPalin;
+
+	function calcularPalin($num)
+	{
+		$this->testsCase++;
+
+		if($num <= 9){
+			return floor($num) + 1;
+		}
+		$num++;
+
+		$impar = (strlen($num)%2 != 0);
+		$numDividido = $this->divideNumero($num);
+		$parteEsq = $numDividido[0];
+		$meio = ($impar) ? $numDividido[1] : "";
+		$parteDir = $numDividido[2];
+
+		if($parteEsq != strrev($parteDir)){
+			if($parteEsq > $parteDir){
+				$proxPalin = $parteEsq.$meio.strrev($parteEsq);
+			}else{
+				if($impar){
+					$novaEsq = (int)$parteEsq.$meio + 1;
+					$proxPalin = $novaEsq . strrev($parteEsq);
+				}else{
+					$novaEsq = (int)$parteEsq.$meio + 1;
+					$proxPalin = $novaEsq . strrev($novaEsq);
+				}
+			}
+
+			return $proxPalin;		
+		}else{
+			if($impar){
+				$novaEsq = (int)$parteEsq.$meio + 1;
+				$proxPalin = $novaEsq . strrev($parteEsq);
+			}else{
+				$novaEsq = (int)$parteEsq.$meio + 1;
+				$proxPalin = $novaEsq . strrev($novaEsq);
+			}
+			return $proxPalin;
+		}
+	}
 }
 
-echo palin(123);
+$palin = new Palin();
+
+echo $palin->calcularPalin(100) . " = 100<br>";
+echo $palin->calcularPalin(808) . " = 808<br>";
+echo $palin->calcularPalin(999) . " = 999<br>";
