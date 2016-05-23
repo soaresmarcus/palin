@@ -18,18 +18,19 @@ class Palin
 		$increment = (strlen($valor)%2 != 0) ? 1 : 0;
 
 		return array(
-				substr((string)$valor, 0, $metadeNum),
-				substr((string)$valor, $metadeNum,1),
-				substr((string)$valor, $metadeNum+$increment)
+					substr((string)$valor, 0, $metadeNum),
+					substr((string)$valor, $metadeNum,1),
+					substr((string)$valor, $metadeNum+$increment)
 				);
 	}
 
 	function getProximoPalin($num)
 	{
 		$this->testsCase++;
+		$num = floor($num);
 
-		if($num <= 9){
-			return floor($num) + 1;
+		if($num < 9){
+			return $num+1;
 		}
 		
 		if(strlen($num + 1) > strlen($num)){
@@ -42,10 +43,6 @@ class Palin
 		$meio = ($impar) ? $numDividido[1] : "";
 		$parteDir = $numDividido[2];
 
-		//print_r($numDividido);
-		/*if($parteEsq == strrev($parteDir)){
-			return $num;
-		}else */
 		if($parteEsq != strrev($parteDir)){
 
 			if($parteEsq > $parteDir){
