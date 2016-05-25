@@ -11,8 +11,16 @@ class PalinTest extends PHPUnit_Framework_TestCase
 	{
 		$user = new Palin();
 		
-		$expected = "818";
-		$actual = $user->getProximoPalin(808);
+		$expected = "9877789";
+		$actual = $user->getProximoPalin(9876831);
+		$this->assertEquals($expected, $actual);
+		
+		$expected = "74647";
+		$actual = $user->getProximoPalin(74569);
+		$this->assertEquals($expected, $actual);
+
+		$expected = "655556";
+		$actual = $user->getProximoPalin(654654);
 		$this->assertEquals($expected, $actual);
 
 		$expected = "11";

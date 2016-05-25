@@ -45,8 +45,11 @@ class Palin
 
 		if($parteEsq != strrev($parteDir)){
 
-			if($parteEsq > $parteDir){
-				$proxPalin = $parteEsq.$meio.strrev($parteEsq);
+			//987 6 531
+			//789 531
+			//987
+			if(strrev($parteEsq) > $parteDir){
+				$proxPalin = $parteEsq.$meio.strrev($parteEsq);				
 			}else{
 				if($impar){
 					$novaEsq = (int)$parteEsq.$meio + 1;

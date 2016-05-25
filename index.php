@@ -25,7 +25,7 @@ use ProjetoPalin\Palin;
 			<form action="" method="post" name="form_palin">
 				<div class="form-group">
 					<label for="numero">Informe o número</label><br/>
-					<input type="number" name="numero" id="numero"/>
+					<input type="number" name="numero" id="numero" value="<?php if(isset($_POST['numero'])) echo $_POST['numero']; ?>" />
 					<input type="submit" value="Enviar" class="btn btn-primary">
 				</div>
 			</form>
