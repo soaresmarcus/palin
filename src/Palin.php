@@ -44,10 +44,7 @@ class Palin
 		$parteDir = $numDividido[2];
 
 		if($parteEsq != strrev($parteDir)){
-
-			//987 6 531
-			//789 531
-			//987
+			
 			if(strrev($parteEsq) > $parteDir){
 				$proxPalin = $parteEsq.$meio.strrev($parteEsq);				
 			}else{
